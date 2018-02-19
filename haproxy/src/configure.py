@@ -49,6 +49,7 @@ listen_conf = Template("""
 
 frontend_conf = Template("""
   frontend $name
+    maxconn $maxconn
     bind *:$port $accept_proxy
     mode $mode
     default_backend $backend
@@ -242,6 +243,7 @@ with open("/etc/haproxy/haproxy.cfg", "w") as configuration:
 
     configuration.write(
         frontend_conf.substitute(
+            maxconn=FRONTEND_MAXCONN,
             name=FRONTEND_NAME,
             port=FRONTEND_PORT,
             mode=FRONTEND_MODE,
