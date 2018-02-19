@@ -64,6 +64,9 @@ if [ ! -z "$TIMEOUT_CLIENT" ]; then echo "export TIMEOUT_CLIENT=\"$TIMEOUT_CLIEN
 if [ ! -z "$TIMEOUT_CONNECT" ]; then echo "export TIMEOUT_CONNECT=\"$TIMEOUT_CONNECT\""  >> /etc/environment; fi
 if [ ! -z "$TIMEOUT_SERVER" ]; then echo "export TIMEOUT_SERVER=\"$TIMEOUT_SERVER\""  >> /etc/environment; fi
 
+if [ ! -z "$FRONTEND_FULLCONN" ]; then echo "export FRONTEND_FULLCONN=\"$FRONTEND_FULLCONN\""  >> /etc/environment; fi
+if [ ! -z "$BACKEND_FULLCONN" ]; then echo "export BACKEND_FULLCONN=\"$BACKEND_FULLCONN\""  >> /etc/environment; fi
+
 
 exec /haproxy-entrypoint.sh "$@"
 
