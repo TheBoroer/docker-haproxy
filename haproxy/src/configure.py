@@ -33,6 +33,9 @@ DOWN_INTER = os.environ.get('DOWN_INTER', INTER)
 RISE = os.environ.get('RISE', '2')
 FALL = os.environ.get('FALL', '3')
 
+FRONTEND_FULLCONN = os.environ.get('FRONTEND_FULLCONN', '2000')
+BACKEND_FULLCONN = os.environ.get('BACKEND_FULLCONN', '200')
+
 
 listen_conf = Template("""
   listen stats
@@ -45,6 +48,7 @@ listen_conf = Template("""
 
 frontend_conf = Template("""
   frontend $name
+    fullconn $fullconn
     bind *:$port $accept_proxy
     mode $mode
     default_backend $backend
@@ -57,6 +61,7 @@ if COOKIES_ENABLED:
     #header with a specific value for each backend server as its cookie value.
     backend_conf = Template("""
   backend $backend
+    fullconn $fullconn
     mode $mode
     balance $balance
     option forwardfor
@@ -73,6 +78,7 @@ else:
     #cookies variable (is set to empty)
     backend_conf = Template("""
   backend $backend
+    fullconn $fullconn
     mode $mode
     balance $balance
     option forwardfor
@@ -95,6 +101,7 @@ listen default
 
 backend_conf = backend_conf.substitute(
     backend=BACKEND_NAME,
+    fullconn=BACKEND_FULLCONN,
     mode=BACKENDS_MODE,
     balance=BALANCE,
     httpchk=HTTPCHK,
@@ -234,6 +241,7 @@ with open("/etc/haproxy/haproxy.cfg", "w") as configuration:
     configuration.write(
         frontend_conf.substitute(
             name=FRONTEND_NAME,
+            fullconn=FRONTEND_FULLCONN,
             port=FRONTEND_PORT,
             mode=FRONTEND_MODE,
             backend=BACKEND_NAME,
