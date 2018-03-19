@@ -1,5 +1,5 @@
 FROM haproxy:1.8
-LABEL maintainer="EEA: IDM2 A-Team <eea-edw-a-team-alerts@googlegroups.com>"
+MAINTAINER Boro <docker@bo.ro>
 
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
