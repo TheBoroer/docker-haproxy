@@ -17,5 +17,8 @@ RUN apt-get update \
  && sed -i '/cron.*/a local2.*                          \/proc\/1\/fd\/1' /etc/rsyslog.conf \
  && mv /docker-entrypoint.sh /haproxy-entrypoint.sh
 
+RUN echo "* soft nofile 1000000" >> /etc/security/limits.conf
+RUN echo "* hard nofile 1000000" >> /etc/security/limits.conf
+
 COPY src/haproxy.cfg            /tmp/
 COPY docker-entrypoint.sh src/configure.py src/track_hosts src/track_dns /
