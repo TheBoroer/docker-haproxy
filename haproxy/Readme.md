@@ -1,8 +1,5 @@
 ## HAProxy Docker image
 
-This image is generic, thus you can obviously re-use it within
-your non-related EEA projects.
-
  - Debian: **Jessie**
  - HAProxy: **1.8**
  - Default Frontend Port Exposed: **5000**
