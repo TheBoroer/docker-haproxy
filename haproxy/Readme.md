@@ -1,12 +1,12 @@
 ## HAProxy Docker image
 
  - Debian: **Jessie**
- - HAProxy: **1.8**
+ - HAProxy: **1.8.5**
  - Default Frontend Port Exposed: **5000**
 
 ### Supported tags and respective Dockerfile links
 
-  - `:latest` [*Dockerfile*](https://github.com/TheBoroer/docker-haproxy/blob/master/haproxy/Dockerfile) - Debian: **Jessie**, HAProxy: **1.8**
+  - `:latest` [*Dockerfile*](https://github.com/TheBoroer/docker-haproxy/blob/master/haproxy/Dockerfile) - Debian: **Jessie**, HAProxy: **1.8.5**
 
 ### Base docker image
 
