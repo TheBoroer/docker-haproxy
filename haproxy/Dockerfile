@@ -1,4 +1,4 @@
-FROM haproxy:1.8
+FROM haproxy:1.8.5
 MAINTAINER Boro <docker@bo.ro>
 
 RUN apt-get update \
