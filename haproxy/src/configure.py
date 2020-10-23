@@ -73,7 +73,7 @@ if COOKIES_ENABLED:
     http-check expect $httpchk_expect
     default-server inter $inter fastinter $fastinter downinter $downinter fall $fall rise $rise
     cookie SRV_ID insert
-""")
+    """)
     cookies = "cookie \\\"@@value@@\\\""
 else:
     #the old template and behaviour for backward compatibility
@@ -91,7 +91,7 @@ else:
     http-check expect $httpchk_expect
     default-server inter $inter fastinter $fastinter downinter $downinter fall $fall rise $rise
     cookie SRV_ID prefix
-""")
+    """)
     cookies = ""
 
 backend_conf_plus = Template("""
