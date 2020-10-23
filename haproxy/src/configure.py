@@ -27,6 +27,7 @@ TIMEOUT_CONNECT = os.environ.get('TIMEOUT_CONNECT', '5000')
 TIMEOUT_CLIENT = os.environ.get('TIMEOUT_CLIENT', '50000')
 TIMEOUT_SERVER = os.environ.get('TIMEOUT_SERVER', '50000')
 HTTPCHK = os.environ.get('HTTPCHK', 'HEAD /')
+HTTPCHK_EXPECT = os.environ.get('HTTPCHK_EXPECT', 'status 200')
 INTER = os.environ.get('INTER', '2s')
 FAST_INTER = os.environ.get('FAST_INTER', INTER)
 DOWN_INTER = os.environ.get('DOWN_INTER', INTER)
@@ -69,6 +70,7 @@ if COOKIES_ENABLED:
     http-request set-header X-Forwarded-Port %[dst_port]
     http-request add-header X-Forwarded-Proto https if { ssl_fc }
     option httpchk $httpchk HTTP/1.1\\r\\nHost:localhost
+    http-check expect $httpchk_expect
     default-server inter $inter fastinter $fastinter downinter $downinter fall $fall rise $rise
     cookie SRV_ID insert
 """)
@@ -86,6 +88,7 @@ else:
     http-request set-header X-Forwarded-Port %[dst_port]
     http-request add-header X-Forwarded-Proto https if { ssl_fc }
     option httpchk $httpchk HTTP/1.1\\r\\nHost:localhost
+    http-check expect $httpchk_expect
     default-server inter $inter fastinter $fastinter downinter $downinter fall $fall rise $rise
     cookie SRV_ID prefix
 """)
@@ -106,6 +109,7 @@ backend_conf = backend_conf.substitute(
     mode=BACKENDS_MODE,
     balance=BALANCE,
     httpchk=HTTPCHK,
+    httpchk_expect=HTTPCHK_EXPECT,
     inter=INTER,
     fastinter=FAST_INTER,
     downinter=DOWN_INTER,
